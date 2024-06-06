@@ -409,3 +409,87 @@ body::-webkit-scrollbar {
   background-image: url(../src/img/btn-moveTop-hover.png);
   transition: 0.5s ease-out;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.guestbook-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#entries {
+  margin-top: 20px;
+}
+
+.entry {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  position: relative; /* 추가 */
+}
+
+.entry-time {
+  font-size: 0.8em;
+  color: #666;
+  text-align: right;
+}
+
+.delete-button {
+  position: absolute; /* 추가 */
+  top: 10px; /* 추가 */
+  right: 10px; /* 추가 */
+  padding: 5px 10px; /* 추가 */
+  background-color: #dc3545; /* 추가 */
+  color: white; /* 추가 */
+  border: none; /* 추가 */
+  border-radius: 3px; /* 추가 */
+  cursor: pointer; /* 추가 */
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* 추가 */
+}

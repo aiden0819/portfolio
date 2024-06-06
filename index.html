@@ -55,11 +55,11 @@
           <div class="slide-container">
             <div class="slide-album">
               <div class="slide-images">
-                <img src="src/img/img-me-1.jpg" alt="내 사진" />    <!--여기도 내사진으로-->
-                <img src="src/img/img-me-2.jpg" alt="내 사진" />
-                <img src="src/img/img-me-3.jpg" alt="내 사진" />
-                <img src="src/img/img-me-4.jpg" alt="내 사진" />
-                <img src="src/img/img-me-5.jpg" alt="내 사진" />
+                <img src="src/img/me1.jpg" alt="내 사진" />    <!--여기도 내사진으로-->
+                <img src="src/img/me2.jpg" alt="내 사진" />
+                <img src="src/img/me3.jpg" alt="내 사진" />
+                <img src="src/img/me4.jpg" alt="내 사진" />
+                <img src="src/img/me5.jpg" alt="내 사진" />
               </div>
               <button class="btn-next">▶</button>
               <button class="btn-prev">◀</button>
@@ -101,28 +101,22 @@
         <h2>Project.</h2>
                
         <article class="box-project">
-          <div>
-            <img
-              class="img-project"
-              src="src/img/project2.png"
-              alt="두번째 프로젝트 이미지"
-            />
-            <!--여기 링크를 내 링크로 바꿔야함 근데 아예 새로 만들어야할 듯-->
-            <button
-              class="btn-detail"
-              type="button"
-              onclick="location.href='https://hyerrin.github.io/ToDoList-JS/';"
-            >
-              자세히 보기
-            </button>
-          </div>
+          <div class="guestbook-container">
+            <h1>방명록</h1>
+            <form id="guestbook-form">
+                <input type="text" id="author" placeholder="작성자 이름" required>
+                <textarea id="content" placeholder="내용" required></textarea>
+                <button type="submit">작성</button>
+            </form>
+            <div id="entries">
+                <!-- 방명록 항목이 여기 표시됩니다 -->
+            </div>
+        </div>
           <div class="txt-project">
-            <h3>오늘 할 일</h3>
+            <h3>방명록</h3>
             <dl>
-              <dt>기간</dt>
-              <dd>2022.04</dd>
               <dt>설명</dt>
-              <dd>오늘 할 일을 기록하고 삭제가 가능한 웹페이지입니다.</dd>
+              <br>자기 이름과 내용을 입력하고 삭제가 가능한 <br>방명록 프로그램입니다</br>.</dd>
               <dt>사용 기술</dt>
               <dd>HTML/CSS, JavaScript</dd>
             </dl>

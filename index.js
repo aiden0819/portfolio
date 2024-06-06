@@ -5,7 +5,7 @@ let moveToTop = function () {
 
 // 타이핑 효과
 const $txt = document.querySelector(".txt-title");
-const content = "안녕하세요 :)\n개발꿈나무 주혜린입니다.";
+const content = "안녕하세요 :)우재의 자기소개 홈페이지입니다.";
 let contentIndex = 0;
 
 let typing = function () {
@@ -99,3 +99,80 @@ window.addEventListener(
   },
   false
 );
+
+document.getElementById('guestbook-form').addEventListener('submit', async function(event) {
+  event.preventDefault(); // 폼 제출 기본 동작 방지
+
+  // 입력된 값 가져오기
+  const author = document.getElementById('author').value;
+  const content = document.getElementById('content').value;
+  const time = new Date().toLocaleString();
+
+  // 방명록 항목 서버에 전송
+  const response = await fetch('http://54.167.60.34:8000/entries/', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ author, content, time })
+  });
+
+  if (response.ok) {
+      const entry = await response.json();
+      addEntryToDOM(entry);
+      document.getElementById('guestbook-form').reset();
+  } else {
+      alert('방명록 항목 추가 실패');
+  }
+});
+
+async function fetchEntries() {
+  const response = await fetch('http://54.167.60.34:8000/entries/');
+  if (response.ok) {
+      const entries = await response.json();
+      entries.forEach(addEntryToDOM);
+  } else {
+      alert('방명록 항목 로드 실패');
+  }
+}
+
+function addEntryToDOM(entry) {
+  const entryIndex = document.getElementById('entries').childElementCount;
+
+  const entryDiv = document.createElement('div');
+  entryDiv.classList.add('entry');
+
+  const entryAuthor = document.createElement('p');
+  entryAuthor.textContent = `작성자: ${entry.author}`;
+
+  const entryContent = document.createElement('p');
+  entryContent.textContent = entry.content;
+
+  const entryTime = document.createElement('p');
+  entryTime.textContent = `작성시간: ${entry.time}`;
+  entryTime.classList.add('entry-time');
+
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = '삭제';
+  deleteButton.classList.add('delete-button');
+  deleteButton.addEventListener('click', async function() {
+      const response = await fetch(`http://54.167.60.34:8000/entries/${entryIndex}`, {
+          method: 'DELETE'
+      });
+
+      if (response.ok) {
+          entryDiv.remove();
+      } else {
+          alert('방명록 항목 삭제 실패');
+      }
+  });
+
+  entryDiv.appendChild(entryAuthor);
+  entryDiv.appendChild(entryContent);
+  entryDiv.appendChild(entryTime);
+  entryDiv.appendChild(deleteButton);
+
+  document.getElementById('entries').appendChild(entryDiv);
+}
+
+window.onload = fetchEntries;
