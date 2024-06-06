@@ -1,3 +1,25 @@
+const host = "http://54.167.60.34:8000/"
+const todosContainer = document.querySelector('.todos-container')
+
+// 처음 접속할 때 getTodos 메소드를 실행
+window.addEventListener('DOMContentLoaded', function () {
+    getTodos();
+});
+// todoList를 가져옴
+function getTodos() {
+  axios.get(`${host}/todo`).then(
+      // then 메소드가 실행되며 받아오는 객체, todoList
+      response => {
+          console.log(response.data);
+          // renderTodos 함수 호출
+          // response.data.todos : 실제 데이터
+          renderTodos(response.data.todos);
+      })
+      .catch(error => {
+          console.error('Error fetching todos:', error)
+      });
+}
+
 // 맨 위로 이동 버튼
 let moveToTop = function () {
   document.body.scrollIntoView({ behavior: "smooth" });
@@ -99,6 +121,8 @@ window.addEventListener(
   },
   false
 );
+
+
 
 document.getElementById('guestbook-form').addEventListener('submit', async function(event) {
   event.preventDefault(); // 폼 제출 기본 동작 방지
